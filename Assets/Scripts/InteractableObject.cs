@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -17,9 +18,15 @@ public class InteractableObject : MonoBehaviour
     [Header("Type of Interactable")]
     public InteractionType interType;
 
+    [Header("Simple info message")]
+    public string infoMessage;
+    public TMP_Text infoText;
+    public float displayDuration = 3f;
+
+
     public void Interact()
     {
-        Debug.Log("Interacting with object: " + gameObject.name + " Currently set to: " + interType.ToString());
+        //Debug.Log("Interacting with object: " + gameObject.name + " Currently set to: " + interType.ToString());
 
         switch(interType)
         {
@@ -45,12 +52,35 @@ public class InteractableObject : MonoBehaviour
 
     public void Pickup()
     {
-        Debug.Log("Picking up Object" + gameObject.name);
+        if (interType == InteractionType.Pickup)
+        {
+            Debug.Log("You picked up a " + gameObject.name);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.LogWarning("Tried to pick up an object but failed");
+        }
     }
 
     public void Info()
     {
-        Debug.Log("Displaying info message on object" + gameObject.name);
+        if(infoText != null)
+        {
+            StopAllCoroutines();
+            infoText.text = infoMessage;          
+            StartCoroutine(HideInfoAfterDelay());
+        }
+        else
+        {
+            Debug.LogWarning("infoText missing");
+        }
+    }
+
+    private IEnumerator HideInfoAfterDelay()
+    {
+        yield return new WaitForSeconds(displayDuration);
+        infoText.text = "";
     }
 
     public void Dialogue()
