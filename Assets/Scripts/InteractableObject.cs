@@ -21,7 +21,7 @@ public class InteractableObject : MonoBehaviour
     [Header("Simple info message")]
     public string infoMessage;
     public TMP_Text infoText;
-    public float displayDuration = 3f;
+    public float fadeDuration = 1f;
 
 
     public void Interact()
@@ -68,8 +68,13 @@ public class InteractableObject : MonoBehaviour
         if(infoText != null)
         {
             StopAllCoroutines();
-            infoText.text = infoMessage;          
-            StartCoroutine(HideInfoAfterDelay());
+            infoText.text = infoMessage;
+
+            Color c = infoText.color;
+            c.a = 1f;
+            infoText.color = c;
+
+            StartCoroutine(FadeOutInfo());
         }
         else
         {
@@ -77,9 +82,20 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
-    private IEnumerator HideInfoAfterDelay()
+    private IEnumerator FadeOutInfo()
     {
-        yield return new WaitForSeconds(displayDuration);
+        yield return new WaitForSeconds(1f);
+        float elapsed = 0f;
+        Color originalColor = infoText.color;
+
+        while(elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            infoText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+
         infoText.text = "";
     }
 
