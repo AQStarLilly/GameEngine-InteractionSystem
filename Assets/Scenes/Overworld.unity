@@ -1610,7 +1610,7 @@ GameObject:
   - component: {fileID: 380897964}
   - component: {fileID: 380897963}
   m_Layer: 0
-  m_Name: Human 2
+  m_Name: HumanInfo
   m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64023,7 +64023,7 @@ GameObject:
   - component: {fileID: 1148408144}
   - component: {fileID: 1148408147}
   m_Layer: 0
-  m_Name: Human
+  m_Name: HumanNothing
   m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
