@@ -14,6 +14,7 @@ public class InteractableObject : MonoBehaviour
         Dialogue
     }
 
+    private DialogueManager dialogueManager;
 
     [Header("Type of Interactable")]
     public InteractionType interType;
@@ -23,6 +24,14 @@ public class InteractableObject : MonoBehaviour
     public TMP_Text infoText;
     public float fadeDuration = 1f;
 
+    [Header("Dialogue Text")]
+    [TextArea] public string[] sentences;
+
+
+    public void Awake()
+    {
+        dialogueManager = GetComponent<DialogueManager>();
+    }
 
     public void Interact()
     {
@@ -101,6 +110,6 @@ public class InteractableObject : MonoBehaviour
 
     public void Dialogue()
     {
-        Debug.Log("Dialogue" + gameObject.name);
+        dialogueManager.StartDialogue(sentences);
     }
 }
