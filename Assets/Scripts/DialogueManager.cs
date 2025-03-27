@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(string[] sentences)
     {
         Time.timeScale = 0;
+        Singleton.Instance.player.canMove = false;
         dialogue.Clear();
         dialogueUI.SetActive(true);
 
@@ -53,6 +54,7 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         Time.timeScale = 1;
+        Singleton.Instance.player.canMove = true;
         dialogueUI.SetActive(false);
     }
 }

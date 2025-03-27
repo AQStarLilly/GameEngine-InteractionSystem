@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     public float magnitudeDebug;
 
+    public bool canMove = true;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateMoveVector(Vector2 InputVector)
     {
+        if (!canMove)
+        {
+            moveVector = Vector2.zero;
+            return;
+        }
         moveVector = InputVector;
     }
 
@@ -60,9 +67,6 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleAnimation()
     {
-        //magnitudeDebug = moveVector.magnitude;
-               
-
         if(moveVector.magnitude != 0)
         {
             animator.SetFloat("Horizontal", moveVector.x);

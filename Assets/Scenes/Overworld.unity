@@ -2595,7 +2595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cd7a88249f8ef469bfbf853befe346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1796898156}
   dialogueManager: {fileID: 1720352810}
 --- !u!4 &706664819
 Transform:
@@ -87157,6 +87157,7 @@ MonoBehaviour:
   moveSpeed: 3
   sprintMultiplier: 2
   magnitudeDebug: 0
+  canMove: 1
 --- !u!114 &1796898158
 MonoBehaviour:
   m_ObjectHideFlags: 0
