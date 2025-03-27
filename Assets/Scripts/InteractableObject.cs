@@ -110,6 +110,13 @@ public class InteractableObject : MonoBehaviour
 
     public void Dialogue()
     {
-        dialogueManager.StartDialogue(sentences);
+        if (Singleton.Instance.dialogueManager != null)
+        {
+            Singleton.Instance.dialogueManager.StartDialogue(sentences);
+        }
+        else
+        {
+            Debug.LogError("DialogueManager not assigned in the Singleton. Please check the GameManager.");
+        }
     }
 }

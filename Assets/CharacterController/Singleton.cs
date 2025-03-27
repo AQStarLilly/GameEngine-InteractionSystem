@@ -6,6 +6,7 @@ public class Singleton : MonoBehaviour
 
     // public LevelManager levelManager;
     public PlayerMovement player;
+    public DialogueManager dialogueManager;
 
     private void Awake()
     {
